@@ -8,12 +8,12 @@ export function MessageBubble({ message }) {
   const isUser = message.type === 'user';
 
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} px-2`}>
       <div
-        className={`max-w-xs lg:max-w-md xl:max-w-lg px-4 py-3 rounded-lg ${
+        className={`max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg px-4 py-3 rounded-lg text-sm ${
           isUser
-            ? 'bg-gradient-to-br from-violet-500 to-indigo-600 text-white'
-            : 'bg-white border border-slate-200 text-slate-900'
+            ? 'bg-gradient-to-br from-violet-500 to-indigo-600 text-white rounded-br-none'
+            : 'bg-white border border-slate-200 text-slate-900 rounded-bl-none'
         }`}
       >
         {/* Message content with rich formatting */}

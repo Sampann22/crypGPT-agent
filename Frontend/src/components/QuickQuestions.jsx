@@ -21,7 +21,7 @@ export function QuickQuestions({ onSelectQuestion }) {
           <button
             key={question}
             onClick={() => onSelectQuestion(question)}
-            className="w-full text-left text-xs p-2 rounded hover:bg-slate-100 text-slate-700 transition font-medium"
+            className="w-full text-left text-xs p-2 rounded hover:bg-slate-100 active:bg-slate-200 text-slate-700 transition font-medium"
           >
             {question}
           </button>

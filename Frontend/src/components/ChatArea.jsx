@@ -13,11 +13,13 @@ export function ChatArea({
   input,
   setInput,
   onSendMessage,
-  messagesEndRef
+  messagesEndRef,
+  onMenuClick,
+  tokenData
 }) {
   return (
-    <div className="flex-1 flex flex-col bg-gradient-to-br from-slate-50 via-white to-zinc-100">
-      <ChatHeader />
+    <div className="flex-1 flex flex-col min-h-screen md:h-screen bg-gradient-to-br from-slate-50 via-white to-zinc-100 overflow-hidden">
+      <ChatHeader onMenuClick={onMenuClick} tokenData={tokenData} />
       <MessagesContainer
         messages={messages}
         loading={loading}
