@@ -1,0 +1,76 @@
+{
+  "section": "Pre-Sale & Fundraising",
+  "overview": {
+    "purpose": "Ensure strong market entry and sustainable growth.",
+    "investor_allocation_percentage": 10,
+    "investor_allocation_tokens": 100000000,
+    "strategic_goal": "Funding rounds are designed with fair pricing, structured vesting schedules, and gradual unlocks to protect token stability and reward early supporters.",
+    "positioning": "CrypGPT aims to balance liquidity with long-term sustainability through controlled token release mechanisms."
+  },
+  "rounds": [
+    {
+      "name": "Seed Sale",
+      "tokens_allocated": 50000000,
+      "percentage_of_total_supply": 5,
+      "price_usd": 0.01,
+      "target_raise_usd": 500000,
+      "diluted_market_cap_usd": 12000000,
+      "vesting": {
+        "tge_unlock_percentage": 20,
+        "monthly_unlock_percentage": 10,
+        "cliff_months": 0,
+        "notes": "Gradual monthly unlock after TGE"
+      },
+      "round_highlights": {
+        "target_participants": "Early supporters, partners, and strategic investors",
+        "liquidity_strategy": "Lock-up ensures sustainable token release"
+      }
+    },
+    {
+      "name": "Pre-Sale",
+      "tokens_allocated": 30000000,
+      "percentage_of_total_supply": 3,
+      "price_usd": 0.02,
+      "target_raise_usd": 600000,
+      "diluted_market_cap_usd": 24000000,
+      "vesting": {
+        "tge_unlock_percentage": 20,
+        "monthly_unlock_percentage": 10,
+        "cliff_months": 0,
+        "notes": "Balanced liquidity and stability"
+      },
+      "round_highlights": {
+        "target_participants": "Early community members and wider participation",
+        "liquidity_strategy": "Vesting plan balances liquidity with market stability"
+      }
+    },
+    {
+      "name": "Private Sale",
+      "tokens_allocated": 20000000,
+      "percentage_of_total_supply": 2,
+      "price_usd": 0.05,
+      "target_raise_usd": 1000000,
+      "diluted_market_cap_usd": 60000000,
+      "vesting": {
+        "tge_unlock_percentage": 100,
+        "monthly_unlock_percentage": 0,
+        "cliff_months": 0,
+        "notes": "Fully unlocked at TGE"
+      },
+      "round_highlights": {
+        "target_participants": "Strategic investors",
+        "liquidity_strategy": "Immediate unlock for liquidity and ecosystem acceleration"
+      }
+    }
+  ],
+  "fundraising_goal": {
+    "total_target_raise_usd": 2100000,
+    "capital_allocation": [
+      "Marketing and adoption campaigns",
+      "Ecosystem development",
+      "Staking and community rewards",
+      "Strategic growth initiatives"
+    ],
+    "objective": "Secure sufficient capital to support sustainable ecosystem growth and large-scale adoption."
+  }
+}

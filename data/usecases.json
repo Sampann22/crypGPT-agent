@@ -1,0 +1,105 @@
+{
+  "section": "Use Cases",
+  "overview": {
+    "description": "CrypGPT combines Artificial Intelligence and Blockchain to deliver practical, real-world utilities that enhance trading, security, payments, and global adoption.",
+    "core_focus": [
+      "AI-powered automation",
+      "Blockchain-backed security",
+      "Real-world crypto utility",
+      "Global accessibility"
+    ]
+  },
+  "use_cases": [
+    {
+      "id": 1,
+      "name": "AI Chatbot",
+      "category": "AI Assistance",
+      "type": "Crypto + General Assistance",
+      "description": "24/7 AI-powered chatbot handling crypto-related queries and general assistance including blockchain trends, market insights, and daily problem-solving.",
+      "primary_benefit": "Instant intelligent support for users",
+      "requires_token": true
+    },
+    {
+      "id": 2,
+      "name": "AI Crypto Portfolio Management",
+      "category": "AI Trading Tools",
+      "type": "Portfolio Optimization",
+      "description": "AI-driven portfolio manager consolidating multiple wallets and exchanges, tracking performance and suggesting personalized strategies for ROI and risk management.",
+      "primary_benefit": "Smarter portfolio decision-making",
+      "requires_token": true
+    },
+    {
+      "id": 3,
+      "name": "AI Trading Signal Assistant + Automated Bots",
+      "category": "AI Trading Tools",
+      "type": "DeFi + CEX Automation",
+      "description": "Real-time AI trading signals with automated execution bots across DeFi and centralized exchanges, including built-in risk control mechanisms.",
+      "primary_benefit": "Safer and optimized trading strategies",
+      "requires_token": true
+    },
+    {
+      "id": 4,
+      "name": "Crypto Card",
+      "category": "Payments",
+      "type": "Fiat + Crypto Integration",
+      "description": "Global crypto-fiat payment card enabling seamless spending of digital assets with AI-driven conversion routing.",
+      "primary_benefit": "Real-world crypto usability",
+      "requires_token": true
+    },
+    {
+      "id": 5,
+      "name": "Telegram AI Bot",
+      "category": "Community",
+      "type": "Community Support",
+      "description": "Telegram-integrated AI bot for instant community engagement, automated support, and user empowerment.",
+      "primary_benefit": "Faster community interaction",
+      "requires_token": true
+    },
+    {
+      "id": 6,
+      "name": "Multi-Language Global Chatbot",
+      "category": "Accessibility",
+      "type": "Multilingual AI",
+      "description": "AI chatbot supporting 100+ languages to eliminate language barriers and enable global participation.",
+      "primary_benefit": "Borderless accessibility",
+      "requires_token": true
+    },
+    {
+      "id": 7,
+      "name": "Move-to-Earn & Chat-to-Earn",
+      "category": "Engagement",
+      "type": "Reward Models",
+      "description": "Earning models rewarding user activity through health-based move-to-earn initiatives and community-driven chat-to-earn systems.",
+      "primary_benefit": "Gamified ecosystem participation",
+      "requires_token": true
+    },
+    {
+      "id": 8,
+      "name": "AI Scam & Fraud Detection",
+      "category": "Security",
+      "type": "Threat Detection",
+      "description": "AI algorithms detecting scams, phishing links, fake contracts, and rug pulls to safeguard investors.",
+      "primary_benefit": "Enhanced ecosystem security",
+      "requires_token": true
+    },
+    {
+      "id": 9,
+      "name": "AI Identity & KYC Verification",
+      "category": "Security",
+      "type": "Identity Verification",
+      "description": "AI-powered identity verification and fraud prevention for exchanges, dApps, and DeFi platforms.",
+      "primary_benefit": "Secure onboarding and compliance",
+      "requires_token": true
+    },
+    {
+      "id": 10,
+      "name": "Decentralized Knowledge Hub",
+      "category": "Information Infrastructure",
+      "type": "AI + Blockchain Verified Data",
+      "description": "Blockchain-verified knowledge hub where AI curates and fact-checks crypto data to eliminate misinformation.",
+      "primary_benefit": "Trusted and tamper-proof crypto information",
+      "requires_token": true
+    }
+  ],
+  "conclusion": "CrypGPT bridges AI and Blockchain to create a secure, intelligent, and globally accessible ecosystem solving real-world crypto challenges."
+}

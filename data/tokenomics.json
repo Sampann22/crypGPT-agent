@@ -1,0 +1,50 @@
+{
+  "token_name": "CrypGPT",
+  "symbol": "CGPT",
+  "total_supply": 1000000000,
+  "supply_type": "Fixed maximum supply",
+  "allocation": [
+    {
+      "category": "Marketing",
+      "tokens": 100000000,
+      "percentage": 10,
+      "vesting": "25% TGE, 12-month linear release"
+    },
+    {
+      "category": "Team & Advisors",
+      "tokens": 150000000,
+      "percentage": 15,
+      "vesting": "6-month cliff, 18-month linear vesting"
+    },
+    {
+      "category": "Investors",
+      "tokens": 100000000,
+      "percentage": 10,
+      "vesting": "20% TGE, 10% monthly"
+    },
+    {
+      "category": "Ecosystem Development",
+      "tokens": 200000000,
+      "percentage": 20,
+      "vesting": "10% TGE, rest unlocked quarterly"
+    },
+    {
+      "category": "Staking & Rewards",
+      "tokens": 250000000,
+      "percentage": 25,
+      "vesting": "Distributed over 36 months"
+    },
+    {
+      "category": "AI Contributor DAO",
+      "tokens": 100000000,
+      "percentage": 10,
+      "vesting": "Based on DAO voting and engagement"
+    },
+    {
+      "category": "Reserve",
+      "tokens": 100000000,
+      "percentage": 10,
+      "vesting": "Locked for 12 months"
+    }
+  ]
+}

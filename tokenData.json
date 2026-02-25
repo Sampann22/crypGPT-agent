@@ -1,0 +1,25 @@
+{
+  "name": "NovaChain",
+  "symbol": "NOVA",
+  "network": "Solana",
+  "contractAddress": "9xQeWvG816bUx9EPG9bHkR...",
+  "totalSupply": "1,000,000,000 NOVA",
+  "circulatingSupply": "420,000,000 NOVA",
+  "launchDate": "2025-01-15",
+  "stakingAPY": "14%",
+  "governance": "DAO-based voting system",
+  "utility": [
+    "Staking rewards",
+    "Governance voting",
+    "NFT marketplace payments",
+    "Ecosystem fee discounts"
+  ],
+  "roadmap": {
+    "Q1 2025": "Token launch and DEX listing",
+    "Q2 2025": "Staking platform launch",
+    "Q3 2025": "NFT marketplace integration",
+    "Q4 2025": "Cross-chain bridge release"
+  },
+  "officialWebsite": "https://novachain.io",
+  "whitepaperURL": "https://novachain.io/whitepaper.pdf"
+}

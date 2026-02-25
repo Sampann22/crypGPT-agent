@@ -1,0 +1,153 @@
+{
+  "section": "Roadmap",
+  "overview": {
+    "description": "CrypGPT follows a phased roadmap focused on long-term sustainability, AI innovation, blockchain integration, and global adoption.",
+    "strategy": "Step-by-step ecosystem expansion ensuring continuous innovation, community growth, and market penetration."
+  },
+  "milestones": [
+    {
+      "year": 2025,
+      "quarter": "Q3",
+      "title": "Foundation & Launch",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "launch_website",
+          "name": "Release of Website and Whitepaper",
+          "linked_usecase": null
+        },
+        {
+          "id": "audit_completion",
+          "name": "Completion of SolidProof Audit",
+          "linked_usecase": null
+        },
+        {
+          "id": "exchange_launch",
+          "name": "Token Launch on Blofien Exchange",
+          "linked_usecase": null
+        },
+        {
+          "id": "market_listings",
+          "name": "Initial Listings on CoinMarketCap, CoinGecko, Coin360, CoinBubble",
+          "linked_usecase": null
+        },
+        {
+          "id": "community_building",
+          "name": "Community building initiatives",
+          "linked_usecase": null
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "quarter": "Q4",
+      "title": "AI & Community Integration",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "ai_trading_signal",
+          "name": "Launch of AI Trading Signal Assistant",
+          "linked_usecase": 3
+        },
+        {
+          "id": "telegram_bot",
+          "name": "Telegram AI Bot integration",
+          "linked_usecase": 5
+        },
+        {
+          "id": "strategic_partnerships",
+          "name": "Formation of strategic partnerships",
+          "linked_usecase": null
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "quarter": "Q1",
+      "title": "Intelligent Tools & Expansion",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "portfolio_tool",
+          "name": "Release of AI Portfolio Management Tool",
+          "linked_usecase": 2
+        },
+        {
+          "id": "multilanguage_chatbot",
+          "name": "Beta launch of Multi-Language Chatbot (100+ languages)",
+          "linked_usecase": 6
+        },
+        {
+          "id": "global_expansion",
+          "name": "Global community expansion",
+          "linked_usecase": null
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "quarter": "Q2",
+      "title": "Payments & Security",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "crypto_card",
+          "name": "Launch of CrypGPT Crypto Card",
+          "linked_usecase": 4
+        },
+        {
+          "id": "fraud_detection",
+          "name": "Deployment of AI Fraud Detection System",
+          "linked_usecase": 8
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "quarter": "Q3",
+      "title": "Earning Models & Knowledge Hub",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "earn_models",
+          "name": "Move-to-Earn and Chat-to-Earn rollout",
+          "linked_usecase": 7
+        },
+        {
+          "id": "knowledge_hub",
+          "name": "Alpha release of Decentralized Knowledge Hub",
+          "linked_usecase": 10
+        },
+        {
+          "id": "ai_marketplace",
+          "name": "Launch of Large-Scale AI Marketplace",
+          "linked_usecase": null
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "quarter": "Q4",
+      "title": "Ecosystem Scaling & Mass Adoption",
+      "status": "planned",
+      "goals": [
+        {
+          "id": "ecosystem_expansion",
+          "name": "Full ecosystem expansion with complete AI + blockchain integration",
+          "linked_usecase": null
+        },
+        {
+          "id": "tier1_cex_listing",
+          "name": "Listings on Tier-1 Centralized Exchanges",
+          "linked_usecase": null
+        },
+        {
+          "id": "active_users_target",
+          "name": "Achievement of 1M+ active users",
+          "linked_usecase": null
+        }
+      ]
+    }
+  ],
+  "vision_statement": "The roadmap outlines CrypGPT’s journey from launch and validation to innovation, ecosystem expansion, and global adoption."
+}
