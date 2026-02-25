@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: "https://crypgptai.vercel.app/"
+  origin: "https://crypgptai.vercel.app"
 }));
 app.use(express.json({ limit: '10mb' }));
 
