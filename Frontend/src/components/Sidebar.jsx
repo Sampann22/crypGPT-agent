@@ -26,10 +26,12 @@ export function Sidebar({ tokenData, onSelectQuestion, isOpen, onClose }) {
       >
         <SidebarHeader onClose={onClose} />
         <TokenInfo tokenData={tokenData} />
-        <QuickQuestions onSelectQuestion={() => {
-          onSelectQuestion.apply(this, arguments);
-          onClose();
-        }} />
+        <QuickQuestions
+          onSelectQuestion={(question) => {
+            onSelectQuestion(question);
+            onClose();
+          }}
+        />
         <SidebarFooter />
       </div>
     </>
