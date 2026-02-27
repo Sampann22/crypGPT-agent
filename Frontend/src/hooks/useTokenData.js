@@ -32,7 +32,7 @@ export function useTokenData() {
     };
 
     fetchTokenData();
-    const interval = setInterval(fetchTokenData, 30000); // Update every 30 seconds
+    const interval = setInterval(fetchTokenData, 60000); // Update every 30 seconds
     return () => clearInterval(interval);
   }, []);
 
