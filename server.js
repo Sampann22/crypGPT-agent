@@ -13,9 +13,22 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
+// CORS: allow Vercel production + localhost for development
+const allowedOrigins = [
+  'https://crypgptai.vercel.app',
+  /^http:\/\/localhost(:\d+)?$/,   // http://localhost, http://localhost:5173, etc.
+  /^http:\/\/127\.0\.0\.1(:\d+)?$/  // http://127.0.0.1:5173, etc.
+];
+if (process.env.CORS_ORIGIN) {
+  allowedOrigins.push(process.env.CORS_ORIGIN);
+}
 app.use(cors({
-  origin: "https://crypgptai.vercel.app"
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true); // same-origin / Postman etc.
+    const ok = allowedOrigins.some(o => typeof o === 'string' ? o === origin : o.test(origin));
+    cb(null, ok ? origin : false);
+  },
+  credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
 
@@ -84,7 +97,7 @@ app.post('/api/chat', async (req, res) => {
     }
 
     // **THREE-TIER RESPONSE SYSTEM**
-    
+
     // TIER 1: Try to answer directly from knowledge base (crisp, summarized)
     if (!promptBuilder.needsLlmExpansion(query, intent)) {
       const kbData = promptBuilder.getStructuredFact(intent);
@@ -120,7 +133,7 @@ app.post('/api/chat', async (req, res) => {
     if (whitepaperContext && !promptBuilder.needsLlmExpansion(query, intent)) {
       // Have whitepaper context but query doesn't need LLM expansion - use KB + whitepaper
       const systemPrompt = 'You are CrypGPT assistant. Answer the user\'s question using ONLY the provided knowledge and whitepaper excerpts below. Keep response CONCISE (2-3 sentences). Never make up information.\n\n' + whitepaperContext;
-      
+
       const ltmResponse = await aiService.generateResponse(
         systemPrompt,
         query,

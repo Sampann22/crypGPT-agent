@@ -11,7 +11,8 @@ const EMBEDDINGS_PATH = path.join(__dirname, '../data/embeddings.json');
 function loadEmbeddings() {
   try {
     if (fs.existsSync(EMBEDDINGS_PATH)) {
-      const content = fs.readFileSync(EMBEDDINGS_PATH, 'utf-8');
+      const content = fs.readFileSync(EMBEDDINGS_PATH, 'utf-8').trim();
+      if (!content) return { sections: [] };
       return JSON.parse(content);
     }
   } catch (error) {

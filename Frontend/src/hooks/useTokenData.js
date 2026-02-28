@@ -15,7 +15,7 @@ export function useTokenData() {
     const fetchTokenData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_BASE}/api/token-data`);
+        const response = await fetch(`${API_BASE}/token-data`);
         if (response.ok) {
           const data = await response.json();
           setTokenData(data.data);

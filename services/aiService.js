@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const LLM_PROVIDER = process.env.LLM_PROVIDER || 'gemini';
+const LLM_PROVIDER = process.env.LLM_PROVIDER || 'openr';
 
 /**
  * Generate response using selected LLM provider
@@ -12,6 +12,8 @@ async function generateResponse(systemPrompt, userPrompt, options = {}) {
 
   try {
     switch (LLM_PROVIDER.toLowerCase()) {
+      case 'openr':
+        return await generateWithOpenR(systemPrompt, userPrompt, temperature, maxTokens);
       case 'openai':
         return await generateWithOpenAI(systemPrompt, userPrompt, temperature, maxTokens);
       case 'claude':
@@ -26,6 +28,48 @@ async function generateResponse(systemPrompt, userPrompt, options = {}) {
   }
 }
 
+ 
+async function generateWithOpenR(systemPrompt, userPrompt, temperature, maxTokens) {
+  const apiKey = process.env.OPENR_API_KEY;
+  if (!apiKey) {
+    throw new Error('OPENR_API_KEY not set in environment variables');
+  }
+
+  const model = process.env.OPENR_MODEL || 'amazon/nova-2-lite-v1:free';
+  const url = process.env.OPENR_URL || ' ';
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt }
+      ],
+      temperature,
+      max_tokens: maxTokens
+    })
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(`Openr API error: ${error.error?.message || response.statusText || 'Unknown error'}`);
+  }
+
+  const data = await response.json();
+  const content = data?.choices?.[0]?.message?.content;
+
+  if (!content) {
+    throw new Error('No content in Openr response');
+  }
+
+  return content.trim();
+}
+
 /**
  * Generate response using Google Gemini API
  */
@@ -35,7 +79,7 @@ async function generateWithGemini(systemPrompt, userPrompt, temperature, maxToke
     throw new Error('GEMINI_API_KEY not set in environment variables');
   }
 
-  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +93,7 @@ async function generateWithGemini(systemPrompt, userPrompt, temperature, maxToke
         parts: [{ text: userPrompt }]
       }],
       generationConfig: {
-        temperature:0.4,
+        temperature: 0.4,
         maxOutputTokens: maxTokens,
         topP: 0.95,
         topK: 40

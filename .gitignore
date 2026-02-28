@@ -2,6 +2,7 @@
 node_modules
 Frontend/node_modules
 Frontend/dist
+Frontend/.env
 API_OPTIMIZATION.md
 FIXES_APPLIED.md
 IMPLEMENTATION.md
