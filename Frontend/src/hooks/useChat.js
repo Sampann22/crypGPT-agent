@@ -1,11 +1,32 @@
 import { useState, useCallback } from 'react';
+import axios from 'axios';
 
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
+const CHAT_TIMEOUT_MS = Number(import.meta.env.VITE_CHAT_TIMEOUT) || 90000; // 90s for LLM
+const MAX_HISTORY_MESSAGES = 20; // last N messages to send for chat memory
 
-const API_BASE = import.meta.env.VITE_API_BASE|| '/api';
+const chatClient = axios.create({
+  baseURL: API_BASE,
+  timeout: CHAT_TIMEOUT_MS,
+  headers: { 'Content-Type': 'application/json' }
+});
+
+/**
+ * Build history array for API from messages state (role + content only)
+ */
+function buildHistory(messages, max = MAX_HISTORY_MESSAGES) {
+  return messages
+    .slice(-max)
+    .map(m => ({
+      role: m.type === 'user' ? 'user' : 'assistant',
+      content: typeof m.content === 'string' ? m.content : ''
+    }))
+    .filter(m => m.content.trim());
+}
 
 /**
  * Custom hook to handle chat message sending and receiving
- * Manages message state, loading state, and error handling
+ * Uses axios for timeout and clearer error handling
  */
 export function useChat() {
   const [messages, setMessages] = useState([]);
@@ -15,7 +36,6 @@ export function useChat() {
   const sendMessage = useCallback(async (query) => {
     if (!query.trim()) return;
 
-    // Add user message
     const userMessage = {
       id: Date.now().toString(),
       type: 'user',
@@ -28,23 +48,12 @@ export function useChat() {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query,
-          maxTokens: 2000
-        })
+      const { data } = await chatClient.post('/chat', {
+        query,
+        maxTokens: 2000,
+        history: buildHistory(messages)
       });
 
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.message || 'Failed to get response');
-      }
-
-      const data = await response.json();
-
-      // Add assistant message
       const assistantMessage = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
@@ -57,13 +66,17 @@ export function useChat() {
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
-      setError(errorMessage);
-      console.error('Chat error:', err);
+      const message = axios.isAxiosError(err)
+        ? (err.response?.data?.message || err.message || (err.code === 'ECONNABORTED' ? 'Request took too long. Please try again.' : 'Failed to get response'))
+        : (err instanceof Error ? err.message : 'An error occurred');
+      setError(message);
+      if (import.meta.env.DEV) {
+        console.error('Chat error:', err);
+      }
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [messages]);
 
   const clearMessages = useCallback(() => {
     setMessages([]);

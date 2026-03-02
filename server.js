@@ -17,7 +17,9 @@ const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   'https://crypgptai.vercel.app',
   /^http:\/\/localhost(:\d+)?$/,   // http://localhost, http://localhost:5173, etc.
-  /^http:\/\/127\.0\.0\.1(:\d+)?$/  // http://127.0.0.1:5173, etc.
+  /^http:\/\/127\.0\.0\.1(:\d+)?$/,  // http://127.0.0.1:5173, etc.
+  'https://chatbot.crypgpt.ai',
+  'https://crypgpt-bot.vercel.app'
 ];
 if (process.env.CORS_ORIGIN) {
   allowedOrigins.push(process.env.CORS_ORIGIN);
