@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
 
-const API_BASE = import.meta.env.VITE_API_BASE || '/api';
+const API_BASE = import.meta.env.VITE_API_BASE|| '/api';
 
 /**
  * Custom hook to handle chat message sending and receiving
@@ -28,7 +28,7 @@ export function useChat() {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE}/api/chat`, {
+      const response = await fetch(`${API_BASE}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -164,7 +164,6 @@ async function findRelevantSections(query, topK = 3) {
   const embeddings = loadEmbeddings();
 
   if (!embeddings.sections || embeddings.sections.length === 0) {
-    console.warn('No embeddings found. Whitepaper sections cannot be retrieved.');
     return [];
   }
 

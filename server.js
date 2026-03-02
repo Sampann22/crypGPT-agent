@@ -45,18 +45,18 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    llmProvider: process.env.LLM_PROVIDER || 'gemini'
+    llmProvider: 'openrouter'
   });
 });
 
 /**
  * Main AI Assistant endpoint
  * POST /api/chat
- * Body: { query: string, context?: string, temperature?: number, maxTokens?: number }
+ * Body: { query: string, history?: Array<{role,content}>, context?: string, temperature?: number, maxTokens?: number }
  */
 app.post('/api/chat', async (req, res) => {
   try {
-    const { query, context = 'general', temperature, maxTokens } = req.body;
+    const { query, history = [], context = 'general', temperature, maxTokens } = req.body;
 
     if (!query || typeof query !== 'string') {
       return res.status(400).json({
@@ -72,18 +72,15 @@ app.post('/api/chat', async (req, res) => {
       });
     }
 
-    // Step 1: Check for financial advice requests
-    const isFinancialAdvice = promptBuilder.detectFinancialIntent(query);
-    if (isFinancialAdvice) {
-      return res.json({
-        response: 'I cannot provide financial advice, investment strategies, or price predictions. However, I\'m happy to explain CrypGPT\'s technology, tokenomics, roadmap, and use cases. What would you like to know?',
-        intent: 'financial_advice_blocked',
-        timestamp: new Date().toISOString(),
-        responseSource: 'safety_filter'
-      });
-    }
+    // Normalize chat history: array of { role: 'user'|'assistant', content: string }, max 20
+    const conversationHistory = Array.isArray(history)
+      ? history
+          .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+          .slice(-20)
+          .map(m => ({ role: m.role, content: String(m.content).slice(0, 8000) }))
+      : [];
 
-    // Step 2: Detect intent from structured knowledge
+    // Detect intent and gather context (no topic blocking)
     const intent = promptBuilder.detectIntent(query);
 
     // Step 3: Fetch real-time data if relevant for market-data queries
@@ -139,7 +136,8 @@ app.post('/api/chat', async (req, res) => {
         query,
         {
           temperature: 0.3,
-          maxTokens: 300
+          maxTokens: 300,
+          conversationHistory
         }
       );
 
@@ -173,7 +171,8 @@ app.post('/api/chat', async (req, res) => {
       userPrompt,
       {
         temperature: temperature || 0.7,
-        maxTokens: finalMaxTokens
+        maxTokens: finalMaxTokens,
+        conversationHistory
       }
     );
 
@@ -191,10 +190,14 @@ app.post('/api/chat', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error processing request:', error);
-    res.status(500).json({
-      error: 'Processing error',
-      message: 'An error occurred while processing your request. Please try again.'
+    const message = error.message || 'An error occurred while processing your request. Please try again.';
+    const status = error.isRateLimit ? 503 : 500;
+    if (status === 500 && process.env.NODE_ENV !== 'production') {
+      console.error('Error processing request:', error.originalMessage || error.message);
+    }
+    res.status(status).json({
+      error: status === 503 ? 'Service temporarily unavailable' : 'Processing error',
+      message
     });
   }
 });
@@ -320,7 +323,7 @@ app.listen(PORT, () => {
    CrypGPT AI Assistant Backend Started     
 
  Port:          ${PORT}
- LLM Provider:  ${process.env.LLM_PROVIDER || 'gemini'}
+ LLM Provider:  openrouter
  Environment:   ${process.env.NODE_ENV || 'development'}
   `);
 });
