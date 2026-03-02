@@ -1,9 +1,43 @@
+import { useState } from 'react';
+
 /**
  * Token data display component
  * Shows real-time token price, market cap, and volume
  * Handles loading and error states, displays "N/A" for missing data
+ * Includes a refresh button to manually update token data
  */
-export function TokenInfo({ tokenData }) {
+export function TokenInfo({ tokenData, tokenError, onRefresh }) {
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await onRefresh?.();
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+  if (tokenError) {
+    return (
+      <div className="p-4 border-b border-slate-200">
+        <h3 className="text-xs font-semibold text-slate-600 uppercase mb-3 tracking-wide">
+          Token Info
+        </h3>
+        <div className="bg-red-50 border border-red-200 rounded p-3">
+          <p className="text-xs text-red-700 font-medium">Error getting the live data</p>
+          <button
+            onClick={async () => {
+              await onRefresh?.();
+            }}
+            className="mt-2 px-3 py-1 text-xs font-medium bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-900 rounded transition-colors duration-200"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (!tokenData) {
     return (
       <div className="p-4 border-b border-slate-200">
@@ -47,9 +81,22 @@ export function TokenInfo({ tokenData }) {
 
   return (
     <div className="p-4 border-b border-slate-200">
-      <h3 className="text-xs font-semibold text-slate-600 uppercase mb-3 tracking-wide">
-        Token Info
-      </h3>
+      <div className="flex items-center justify-between mb-3 gap-2">
+        <h3 className="text-xs font-semibold text-slate-600 uppercase tracking-wide">
+          Token Info
+        </h3>
+        <button
+          onClick={handleRefresh}
+          disabled={isRefreshing}
+          className="px-2 py-1 text-xs font-medium bg-slate-100 hover:bg-slate-200 disabled:bg-slate-100 disabled:opacity-50 text-slate-600 hover:text-slate-800 disabled:text-slate-400 rounded transition-colors duration-200 flex items-center gap-1 whitespace-nowrap"
+          title="Refresh token data"
+        >
+          <span className={`inline-block ${isRefreshing ? 'animate-spin' : ''}`}>
+            ↻
+          </span>
+          {isRefreshing ? 'Updating...' : 'Refresh'}
+        </button>
+      </div>
       <div className="space-y-2">
         <div>
           <p className="text-xs text-slate-500 font-medium">Price (USD)</p>

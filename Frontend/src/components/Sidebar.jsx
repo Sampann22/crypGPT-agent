@@ -7,7 +7,7 @@ import { SidebarFooter } from './SidebarFooter';
  * Sidebar component
  * Contains logo, token info, quick questions, and API status
  */
-export function Sidebar({ tokenData, onSelectQuestion, isOpen, onClose }) {
+export function Sidebar({ tokenData, tokenError, onRefreshTokenData, onSelectQuestion, isOpen, onClose }) {
   return (
     <>
       {/* Mobile overlay */}
@@ -25,7 +25,7 @@ export function Sidebar({ tokenData, onSelectQuestion, isOpen, onClose }) {
         }`}
       >
         <SidebarHeader onClose={onClose} />
-        <TokenInfo tokenData={tokenData} />
+        <TokenInfo tokenData={tokenData} tokenError={tokenError} onRefresh={onRefreshTokenData} />
         <QuickQuestions
           onSelectQuestion={(question) => {
             onSelectQuestion(question);

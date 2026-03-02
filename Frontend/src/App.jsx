@@ -9,7 +9,7 @@ import { useChat } from './hooks/useChat';
  * Orchestrates sidebar and chat area, manages state and API communication
  */
 export function App() {
-  const { tokenData } = useTokenData();
+  const { tokenData, error: tokenError, refresh: refreshTokenData } = useTokenData();
   const {
     messages,
     loading,
@@ -47,6 +47,8 @@ export function App() {
       {/* Sidebar */}
       <Sidebar
         tokenData={tokenData}
+        tokenError={tokenError}
+        onRefreshTokenData={refreshTokenData}
         onSelectQuestion={handleQuickQuestion}
         isOpen={sidebarOpen}
         onClose={closeSidebar}
